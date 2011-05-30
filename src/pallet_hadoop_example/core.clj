@@ -1,0 +1,1 @@
+(ns pallet-hadoop-example.core)

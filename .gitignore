@@ -1,0 +1,11 @@
+.#
+pom.xml
+.cake
+*jar
+lib
+classes
+docs
+autodoc
+.#*
+*#*
+./pallet-hadoop-example
