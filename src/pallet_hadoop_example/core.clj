@@ -27,6 +27,8 @@
 ;;
 ;; use all required stuff...
 ;;
+;; Note that we're using the cloudera version of hadoop.
+;;
 ;; Talk about the cluster, and what we're allowing people to do with
 ;; it. Basically, a cluster is defined through an ip-type, a map of
 ;; node-tags-> node definitions, and base node-spec and property
