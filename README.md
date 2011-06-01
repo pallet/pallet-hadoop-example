@@ -56,7 +56,7 @@ and define `ec2-service` with:
 
 {% highlight clojure %}
 user=> (def ec2-service (compute-service-from-config-file :aws))
-#'pallet-hadoop-example.core/ec2-service
+#'user/ec2-service
 {% endhighlight %}
 
 ### Booting the Cluster ###
