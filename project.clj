@@ -1,5 +1,6 @@
 (defproject pallet-hadoop-example "0.0.1-SNAPSHOT"
   :description "Example project for running Hadoop on Pallet."
+  :main pallet-hadoop-example.core
   :repositories {"conjars" "http://conjars.org/repo/"
                  "sonatype"
                  "http://oss.sonatype.org/content/repositories/releases/"}
