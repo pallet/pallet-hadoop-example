@@ -64,7 +64,7 @@ user=> (def ec2-service (compute-service-from-config-file :aws))
 Now that we have our compute service and our cluster defined, booting the cluster is as simple as the following:
 
 {% highlight clojure %}
-=> (create-cluster example-cluster ec2-service)
+user=> (create-cluster example-cluster ec2-service)
 {% endhighlight %}
 
 The logs you see flying by are Pallet's SSH communications with the nodes in the cluster. On node startup, Pallet uses your local SSH key to gain passwordless access to each node, and coordinates all configuration using streams of SSH commands.
@@ -204,5 +204,5 @@ Success!
 When we're finished, we can kill our cluster with this command, back at the REPL:
 
 {% highlight clojure %}
-=> (destroy-cluster example-cluster ec2-service)
+user=> (destroy-cluster example-cluster ec2-service)
 {% endhighlight %}
