@@ -1,10 +1,12 @@
 (ns pallet-hadoop-example.core
   (:use pallet-hadoop.node
-        pallet.compute
         [pallet.crate.hadoop :only (hadoop-user)]
         [pallet.extensions :only (def-phase-fn)])
   (:require [pallet.core :as core]
             [pallet.resource.directory :as d]))
+
+(defn bootstrap []
+  (use 'pallet.compute))
 
 (def remote-env
   {:algorithms {:lift-fn pallet.core/parallel-lift
