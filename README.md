@@ -40,7 +40,7 @@ user=> (def ec2-service
            (compute-service "aws-ec2"
                             :identity "ec2-access-key-id"         ;; Swap in your access key ID
                             :credential "ec2-secret-access-key")) ;; Swap in your secret key
-#'pallet-hadoop-example.core/ec2-service
+#'user/ec2-service
 {% endhighlight %}
 
 Alternatively, if you want to keep these out of your code base, save the following to `~/.pallet/config.clj`:
@@ -56,7 +56,7 @@ and define `ec2-service` with:
 
 {% highlight clojure %}
 user=> (def ec2-service (compute-service-from-config-file :aws))
-#'pallet-hadoop-example.core/ec2-service
+#'user/ec2-service
 {% endhighlight %}
 
 ### Booting the Cluster ###
