@@ -55,7 +55,6 @@
                                              :mapred.tasktracker.reduce.tasks.maximum 15
                                              :mapred.child.java.opts "-Xms1024m -Xmx1024m"}}))
 
-
 (comment
   ;; We can define our compute service here...
   (def ec2-service
