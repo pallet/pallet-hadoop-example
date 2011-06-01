@@ -37,8 +37,6 @@ This will get you to a REPL in `pallet-hadoop-example.core`.
 Pallet abstracts away details about specific cloud providers through the idea of a "compute service". The combination of our cluster definition and our compute service will be enough to get our cluster running. We define a compute service at our REPL like so:
 
 {% highlight clojure %}
-=> (use 'pallet.compute)
-nil
 => (def ec2-service
        (compute-service "aws-ec2"
                         :identity "ec2-access-key-id"         ;; Swap in your access key ID
