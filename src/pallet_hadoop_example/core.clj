@@ -26,7 +26,7 @@
                     :compute compute-service
                     :environment remote-env)
       (lift-cluster cluster
-                    authorize-mnt
+                    :phase authorize-mnt
                     :compute compute-service
                     :environment remote-env)
       (start-cluster cluster
@@ -45,14 +45,15 @@
                  :slaves     (slave-group 2)}
                 :base-machine-spec {:os-family :ubuntu
                                     :os-version-matches "10.10"
-                                    :os-64-bit true}
+                                    :os-64-bit true
+                                    :min-ram (* 4 1024)}
                 :base-props {:hdfs-site {:dfs.data.dir "/mnt/dfs/data"
                                          :dfs.name.dir "/mnt/dfs/name"}
                              :mapred-site {:mapred.task.timeout 300000
-                                           :mapred.reduce.tasks 60
-                                           :mapred.tasktracker.map.tasks.maximum 15
-                                           :mapred.tasktracker.reduce.tasks.maximum 15
-                                           :mapred.child.java.opts "-Xms1024m -Xmx1024m"}}))
+                                           :mapred.reduce.tasks 3
+                                           :mapred.tasktracker.map.tasks.maximum 3
+                                           :mapred.tasktracker.reduce.tasks.maximum 3
+                                           :mapred.child.java.opts "-Xms1024m"}}))
 
 (comment
   ;; We can define our compute service here...
