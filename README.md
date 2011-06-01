@@ -14,7 +14,7 @@ To get started  Pallet-Hadoop, clone this project to your local machine:
 Open up `./src/pallet-hadoop-example/core.clj` with your favorite text editor. `example-cluster` contains a data description of a full hadoop cluster with:
 
 * One master node functioning as jobtracker and namenode
-* Three slave nodes (`(slave-group 3)`), each acting as datanode and tasktracker.
+* Two slave nodes (`(slave-group 2)`), each acting as datanode and tasktracker.
 
 Start a repl:
 

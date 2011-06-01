@@ -40,20 +40,19 @@
                 :environment remote-env))
 
 (def example-cluster
-    (cluster-spec :private
-                  {:jobtracker (node-group [:jobtracker :namenode])
-                   :slaves     (slave-group 3)}
-                  :base-machine-spec {:os-family :ubuntu
-                                      :os-version-matches "10.10"
-                                      :os-64-bit true
-                                      :fastest true}
-                  :base-props {:hdfs-site {:dfs.data.dir "/mnt/dfs/data"
-                                           :dfs.name.dir "/mnt/dfs/name"}
-                               :mapred-site {:mapred.task.timeout 300000
-                                             :mapred.reduce.tasks 60
-                                             :mapred.tasktracker.map.tasks.maximum 15
-                                             :mapred.tasktracker.reduce.tasks.maximum 15
-                                             :mapred.child.java.opts "-Xms1024m -Xmx1024m"}}))
+  (cluster-spec :private
+                {:jobtracker (node-group [:jobtracker :namenode])
+                 :slaves     (slave-group 2)}
+                :base-machine-spec {:os-family :ubuntu
+                                    :os-version-matches "10.10"
+                                    :os-64-bit true}
+                :base-props {:hdfs-site {:dfs.data.dir "/mnt/dfs/data"
+                                         :dfs.name.dir "/mnt/dfs/name"}
+                             :mapred-site {:mapred.task.timeout 300000
+                                           :mapred.reduce.tasks 60
+                                           :mapred.tasktracker.map.tasks.maximum 15
+                                           :mapred.tasktracker.reduce.tasks.maximum 15
+                                           :mapred.child.java.opts "-Xms1024m -Xmx1024m"}}))
 
 (comment
   ;; We can define our compute service here...
