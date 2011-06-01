@@ -29,20 +29,17 @@ Open up `./src/pallet-hadoop-example/core.clj` with your favorite text editor. `
 Start a repl:
 
       $ lein repl
-
-This will get you to a REPL in `pallet-hadoop-example.core`.
-
+      user=> (use 'pallet-hadoop-example.core) (bootstrap)
+<br/>
 ### Compute Service ###
 
 Pallet abstracts away details about specific cloud providers through the idea of a "compute service". The combination of our cluster definition and our compute service will be enough to get our cluster running. We define a compute service at our REPL like so:
 
 {% highlight clojure %}
-=> (use 'pallet.compute)
-nil
-=> (def ec2-service
-       (compute-service "aws-ec2"
-                        :identity "ec2-access-key-id"         ;; Swap in your access key ID
-                        :credential "ec2-secret-access-key")) ;; Swap in your secret key
+user=> (def ec2-service
+           (compute-service "aws-ec2"
+                            :identity "ec2-access-key-id"         ;; Swap in your access key ID
+                            :credential "ec2-secret-access-key")) ;; Swap in your secret key
 #'pallet-hadoop-example.core/ec2-service
 {% endhighlight %}
 
@@ -58,7 +55,7 @@ Alternatively, if you want to keep these out of your code base, save the followi
 and define `ec2-service` with:
 
 {% highlight clojure %}
-=> (def ec2-service (compute-service-from-config-file :aws))
+user=> (def ec2-service (compute-service-from-config-file :aws))
 #'pallet-hadoop-example.core/ec2-service
 {% endhighlight %}
 
@@ -67,7 +64,7 @@ and define `ec2-service` with:
 Now that we have our compute service and our cluster defined, booting the cluster is as simple as the following:
 
 {% highlight clojure %}
-=> (create-cluster example-cluster ec2-service)
+user=> (create-cluster example-cluster ec2-service)
 {% endhighlight %}
 
 The logs you see flying by are Pallet's SSH communications with the nodes in the cluster. On node startup, Pallet uses your local SSH key to gain passwordless access to each node, and coordinates all configuration using streams of SSH commands.
@@ -207,5 +204,5 @@ Success!
 When we're finished, we can kill our cluster with this command, back at the REPL:
 
 {% highlight clojure %}
-=> (destroy-cluster example-cluster ec2-service)
+user=> (destroy-cluster example-cluster ec2-service)
 {% endhighlight %}
