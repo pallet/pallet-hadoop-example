@@ -33,7 +33,7 @@ user=> (use 'pallet-hadoop-example.core) (bootstrap)
 
 Pallet abstracts away details about specific cloud providers through the idea of a "compute service". The combination of our cluster definition and our compute service will be enough to get our cluster running. A compute service is defined at the REPL like so:
 
-```clojure
+```
 user=> (def ec2-service
            (compute-service "aws-ec2"
                             :identity "ec2-access-key-id"         ;; Swap in your access key ID
