@@ -90,13 +90,13 @@ Running the following commands at the remote shell should do the trick.
 
     $ mkdir /tmp/books
     $ cd /tmp/books
-    $ curl -O http://www.gutenberg.org/cache/epub/20417/pg20417.txt
-    $ curl -O http://www.gutenberg.org/cache/epub/5000/pg5000.txt
-    $ curl -O http://www.gutenberg.org/cache/epub/4300/pg4300.txt
-    $ curl -O http://www.gutenberg.org/cache/epub/132/pg132.txt
-    $ curl -O http://www.gutenberg.org/cache/epub/1661/pg1661.txt
-    $ curl -O http://www.gutenberg.org/cache/epub/972/pg972.txt
-    $ curl -O http://www.gutenberg.org/cache/epub/19699/pg19699.txt
+    $ curl -O https://hadoopbooks.s3.amazonaws.com/pg20417.txt
+    $ curl -O https://hadoopbooks.s3.amazonaws.com/pg5000.txt
+    $ curl -O https://hadoopbooks.s3.amazonaws.com/pg4300.txt
+    $ curl -O https://hadoopbooks.s3.amazonaws.com/pg132.txt
+    $ curl -O https://hadoopbooks.s3.amazonaws.com/pg1661.txt
+    $ curl -O https://hadoopbooks.s3.amazonaws.com/pg972.txt
+    $ curl -O https://hadoopbooks.s3.amazonaws.com/pg19699.txt
 
 Next, navigate to the Hadoop directory:
 
