@@ -1,6 +1,6 @@
 # Pallet-Hadoop #
 
-This project serves as an example to get you started using [Pallet-Hadoop](https://github.com/pallet/pallet-hadoop), a layer over [Pallet](https://github.com/pallet/pallet) that translates data descriptions of Hadoop clusters into full configured, running machines. For a more detailed discussion of Pallet-Hadoop's design, see the [project wiki](https://github.com/pallet/pallet-hadoop/wiki).
+This project serves as an example to get you started using [Pallet-Hadoop](https://github.com/pallet/pallet-hadoop), a layer over [Pallet](https://github.com/pallet/pallet) that translates data descriptions of Hadoop clusters into fully configured, running machines. For a more detailed discussion of Pallet-Hadoop's design, see the [project wiki](https://github.com/pallet/pallet-hadoop/wiki).
 
 ## Setting Up ##
 
