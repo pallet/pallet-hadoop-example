@@ -14,8 +14,7 @@
 
 (def-phase-fn authorize-mnt
   "Authorizes the `/mnt` volume for use by the default hadoop user;
-  Necessary to take advantage of space Changes the permissions on
-  /mnt, for ec2 systems."
+  Necessary to take advantage of instance storage on EC2."
   []
   (d/directory "/mnt"
                :owner hadoop-user
@@ -51,7 +50,8 @@
                                     :min-ram (* 4 1024)}
                 :base-props {:hdfs-site {:dfs.data.dir "/mnt/dfs/data"
                                          :dfs.name.dir "/mnt/dfs/name"}
-                             :mapred-site {:mapred.task.timeout 300000
+                             :mapred-site {:mapred.local.dir "/mnt/hadoop/mapred/local"
+                                           :mapred.task.timeout 300000
                                            :mapred.reduce.tasks 3
                                            :mapred.tasktracker.map.tasks.maximum 3
                                            :mapred.tasktracker.reduce.tasks.maximum 3
@@ -70,7 +70,7 @@
   ;; Or, we can get this from a config file, in
   ;; `~/.pallet/config.clj`.
   (def ec2-service
-    (compute-service-from-config-file :aws))
+    (service :aws))
 
   ;; Booting the cluster is as simple as the following:
   (create-cluster example-cluster ec2-service)

@@ -40,7 +40,7 @@ Alternatively, if you want to keep these out of your code base, save the followi
 
 and define `ec2-service` with:
 
-    user=> (def ec2-service (compute-service-from-config-file :aws))
+    user=> (def ec2-service (service :aws))
     #'user/ec2-service
 
 ### Booting the Cluster ###
