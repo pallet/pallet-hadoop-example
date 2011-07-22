@@ -11,10 +11,15 @@ I'm going to assume that you have some basic knowledge of clojure, and know how 
     $ git clone git://github.com/pallet/pallet-hadoop-example.git
     $ cd pallet-hadoop-example
 
-Open up `./src/pallet-hadoop-example/core.clj` with your favorite text editor. `example-cluster` contains a data description of a full hadoop cluster with:
+Open up `./src/pallet-hadoop-example/core.clj` with your favorite text
+editor. `make-example-cluster` is a function that builds a data description of a full hadoop cluster with:
 
 * One master node functioning as jobtracker and namenode
-* Two slave nodes (`(slave-group 2)`), each acting as datanode and tasktracker.
+* A number of slave nodes (`slave-count`), each acting as datanode and
+  tasktracker.
+  
+For convenience, we have created an `example-cluster` that
+defines a cluster with 2 slaves and the jobtracker/namenode node.
 
 Start a repl:
 
@@ -40,7 +45,7 @@ Alternatively, if you want to keep these out of your code base, save the followi
 
 and define `ec2-service` with:
 
-    user=> (def ec2-service (service :aws))
+    user=> (def ec2-service (compute-service-from-config-file :aws))
     #'user/ec2-service
 
 ### Booting the Cluster ###
@@ -57,13 +62,11 @@ Once `create-cluster` returns, we're done! We now have a fully configured, multi
 
 To test our new cluster, we're going log in and run a word counting MapReduce job on a number of books from [Project Gutenberg](http://www.gutenberg.org/wiki/Main_Page).
 
-Point your browser to the [EC2 Console](https://console.aws.amazon.com/ec2/), log in, and click "Instances" on the left.
+At the REPL, type
 
-You should see three nodes running; click on the node whose security group contains "jobtracker", and scroll the lower pane down to retrieve the public DNS address for the node. It'll look something like
+    user=> (jobtracker-ip ec2-service)
 
-    ec2-50-17-103-174.compute-1.amazonaws.com
-
-I'll refer to this address as `jobtracker.com`.
+This will print out the IP address of the jobtracker node. I'll refer to this address as `jobtracker.com`.
 
 Point your browser to `jobtracker.com:50030`, and you'll see the JobTracker web console. (Keep this open, as it will allow us to watch our MapReduce job in action.).`jobtracker.com:50070` points to the NameNode console, with information about HDFS.
 
@@ -86,17 +89,12 @@ Our first step will be to collect a bunch of text to process. We start by downlo
 * [The Devil’s Dictionary by Ambrose Bierce](http://www.gutenberg.org/cache/epub/972/pg972.txt)
 * [Encyclopaedia Britannica, 11th Edition, Volume 4, Part 3](http://www.gutenberg.org/cache/epub/19699/pg19699.txt)
 
-Running the following commands at the remote shell should do the trick.
+For convenience, pallet-hadoop-example has created a script that will
+download all such files for you. Running the following commands at the
+remote shell should do the trick. The books will be downloaded into `/tmp/books`:
 
-    $ mkdir /tmp/books
-    $ cd /tmp/books
-    $ curl -O https://hadoopbooks.s3.amazonaws.com/pg20417.txt
-    $ curl -O https://hadoopbooks.s3.amazonaws.com/pg5000.txt
-    $ curl -O https://hadoopbooks.s3.amazonaws.com/pg4300.txt
-    $ curl -O https://hadoopbooks.s3.amazonaws.com/pg132.txt
-    $ curl -O https://hadoopbooks.s3.amazonaws.com/pg1661.txt
-    $ curl -O https://hadoopbooks.s3.amazonaws.com/pg972.txt
-    $ curl -O https://hadoopbooks.s3.amazonaws.com/pg19699.txt
+    $ cd /tmp
+    $ ./download-books.sh
 
 Next, navigate to the Hadoop directory:
 
