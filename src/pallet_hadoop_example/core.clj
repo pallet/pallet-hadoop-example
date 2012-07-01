@@ -13,9 +13,6 @@
   (use 'pallet.compute)
   (use '[pallet-hadoop.node :only (jobtracker-ip)]))
 
-(defn bootstrap []
-  (use 'pallet.compute))
-
 (def remote-env
   {:algorithms {:lift-fn pallet.core/parallel-lift
                 :converge-fn pallet.core/parallel-adjust-node-counts}})
