@@ -76,7 +76,7 @@ To test our new cluster, we're going log in and run a word counting MapReduce jo
 At the REPL, type
 
 ```clojure
-user=> (jobtracker-ip ec2-service)
+user=> (jobtracker-ip :public ec2-service)
 ```
 
 This will print out the IP address of the jobtracker node. I'll refer to this address as `jobtracker.com`.
