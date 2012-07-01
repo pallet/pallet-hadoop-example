@@ -2,11 +2,13 @@
 
 This project serves as an example to get you started using [Pallet-Hadoop](https://github.com/pallet/pallet-hadoop), a layer over [Pallet](https://github.com/pallet/pallet) that translates data descriptions of Hadoop clusters into fully configured, running machines. For a more detailed discussion of Pallet-Hadoop's design, see the [project wiki](https://github.com/pallet/pallet-hadoop/wiki).
 
+
 ## Setting Up
 
 Before you get your first cluster running, you'll need to [create an AWS account](https://aws-portal.amazon.com/gp/aws/developer/registration/index.html). Once you've done this, navigate to [your account page](http://aws.amazon.com/account/) and follow the "Security Credentials" link. Under "Access Credentials", you should see a tab called "Access Keys". Note down your Access Key ID and Secret Access Key for future reference.
 
 I'm going to assume that you have some basic knowledge of clojure, and know how to get a project running using [leiningen](https://github.com/technomancy/leiningen) or [cake](https://github.com/ninjudd/cake). Go ahead and download [the example project](https://github.com/pallet/pallet-hadoop-example) to follow along:
+
 
 ```bash
 $ git clone git://github.com/pallet/pallet-hadoop-example.git
