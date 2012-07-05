@@ -2,11 +2,13 @@
 
 This project serves as an example to get you started using [Pallet-Hadoop](https://github.com/pallet/pallet-hadoop), a layer over [Pallet](https://github.com/pallet/pallet) that translates data descriptions of Hadoop clusters into fully configured, running machines. For a more detailed discussion of Pallet-Hadoop's design, see the [project wiki](https://github.com/pallet/pallet-hadoop/wiki).
 
+
 ## Setting Up
 
 Before you get your first cluster running, you'll need to [create an AWS account](https://aws-portal.amazon.com/gp/aws/developer/registration/index.html). Once you've done this, navigate to [your account page](http://aws.amazon.com/account/) and follow the "Security Credentials" link. Under "Access Credentials", you should see a tab called "Access Keys". Note down your Access Key ID and Secret Access Key for future reference.
 
 I'm going to assume that you have some basic knowledge of clojure, and know how to get a project running using [leiningen](https://github.com/technomancy/leiningen) or [cake](https://github.com/ninjudd/cake). Go ahead and download [the example project](https://github.com/pallet/pallet-hadoop-example) to follow along:
+
 
 ```bash
 $ git clone git://github.com/pallet/pallet-hadoop-example.git
@@ -33,7 +35,7 @@ user=> (use 'pallet-hadoop-example.core) (bootstrap)
 
 Pallet abstracts away details about specific cloud providers through the idea of a "compute service". The combination of our cluster definition and our compute service will be enough to get our cluster running. A compute service is defined at the REPL like so:
 
-```clojure
+```
 user=> (def ec2-service
            (compute-service "aws-ec2"
                             :identity "ec2-access-key-id"         ;; Swap in your access key ID
@@ -76,7 +78,7 @@ To test our new cluster, we're going log in and run a word counting MapReduce jo
 At the REPL, type
 
 ```clojure
-user=> (jobtracker-ip ec2-service)
+user=> (jobtracker-ip :public ec2-service)
 ```
 
 This will print out the IP address of the jobtracker node. I'll refer to this address as `jobtracker.com`.
