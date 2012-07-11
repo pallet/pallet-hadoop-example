@@ -1,13 +1,12 @@
-(defproject pallet-hadoop-example "0.0.3-beta.1"
+(defproject pallet-hadoop-example "0.0.3-beta.2-SNAPSHOT"
   :description "Example project for running Hadoop on Pallet."
   :repositories {"sonatype"
                  "http://oss.sonatype.org/content/repositories/releases/"}
-  :dependencies [[org.clojure/clojure "1.2.0"]
+  :dependencies [[org.clojure/clojure "1.2.1"]
                  [org.clojure/clojure-contrib "1.2.0"]]
-  :dev-dependencies [[pallet-hadoop "0.3.3-beta.1"]
-                     [org.jclouds/jclouds-all "1.0-beta-9c"]
-                     [org.jclouds.driver/jclouds-jsch "1.0-beta-9c"]
-                     [org.jclouds.driver/jclouds-log4j "1.0-beta-9c"]
-                     [log4j/log4j "1.2.14"]
-                     [swank-clojure "1.4.0-SNAPSHOT"]
-                     [clojure-source "1.2.0"]])
+  :dev-dependencies [[pallet-hadoop "0.3.3-SNAPSHOT"]
+                     [org.jclouds/jclouds-all "1.2.2"]
+                     [org.jclouds.driver/jclouds-jsch "1.2.2"]
+                     [org.jclouds.driver/jclouds-slf4j "1.2.2"]
+                     [ch.qos.logback/logback-classic "1.0.1"]
+                     [ch.qos.logback/logback-core "1.0.1"]])
