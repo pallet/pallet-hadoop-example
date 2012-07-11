@@ -4,9 +4,12 @@ pom.xml
 *jar
 lib
 logs/
+log/
 classes
 docs
 autodoc
 .#*
 *#*
 ./pallet-hadoop-example
+checkouts
+.lein-deps-sum
