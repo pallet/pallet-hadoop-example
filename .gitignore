@@ -2,7 +2,7 @@
 pom.xml
 .cake
 *jar
-lib
+lib/
 logs/
 log/
 classes
