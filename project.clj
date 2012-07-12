@@ -4,7 +4,7 @@
                  "http://oss.sonatype.org/content/repositories/releases/"}
   :dependencies [[org.clojure/clojure "1.2.1"]
                  [org.clojure/clojure-contrib "1.2.0"]]
-  :dev-dependencies [[pallet-hadoop "0.3.3-SNAPSHOT"]
+  :dev-dependencies [[org.cloudhoist/pallet-hadoop "0.3.3-beta.3"]
                      [org.jclouds/jclouds-all "1.2.2"]
                      [org.jclouds.driver/jclouds-jsch "1.2.2"]
                      [org.jclouds.driver/jclouds-slf4j "1.2.2"]
