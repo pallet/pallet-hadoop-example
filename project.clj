@@ -1,4 +1,4 @@
-(defproject pallet-hadoop-example "0.0.3-beta.2"
+(defproject pallet-hadoop-example "0.0.3-beta.3-SNAPSHOT"
   :description "Example project for running Hadoop on Pallet."
   :repositories {"sonatype"
                  "http://oss.sonatype.org/content/repositories/releases/"}
