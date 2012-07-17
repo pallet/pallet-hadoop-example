@@ -21,10 +21,12 @@ Key for future reference.
 
 I'm going to assume that you have some basic knowledge of clojure, and
 know how to get a project running using
-[leiningen](https://github.com/technomancy/leiningen) or
-[cake](https://github.com/ninjudd/cake). Go ahead and download [the
-example project](https://github.com/pallet/pallet-hadoop-example) to
-follow along:
+[leiningen](https://github.com/technomancy/leiningen/tree/stable)
+(__NOTE__: this links points to Leiningen 1, since leiningen 2, we
+just found, has a bug in the repl that results in out of memory errors
+in some cases). Go ahead and download [the example
+project](https://github.com/pallet/pallet-hadoop-example) to follow
+along:
 
 
 ```bash
