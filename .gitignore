@@ -2,14 +2,13 @@
 pom.xml
 .cake
 *jar
-lib/
-logs/
+lib
 log/
 classes
 docs
 autodoc
 .#*
 *#*
+.lein-deps-sum
 ./pallet-hadoop-example
 checkouts
-.lein-deps-sum
