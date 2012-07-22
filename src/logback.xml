@@ -1,7 +1,7 @@
-<configuration scan="true" scanPeriod="1 seconds" debug="false">
-  
+<configuration scan="true" scanPeriod="5 seconds" debug="true">
   <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-    <!-- deny all events with a level below INFO, that is TRACE and DEBUG -->
+    <!-- deny all events with a level below INFO, that is TRACE and
+         DEBUG -->
     <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
       <level>ERROR</level>
     </filter>
@@ -15,8 +15,26 @@
       <pattern>%date %level %logger{10} %msg%n</pattern>
     </encoder>
   </appender>
+  <appender name="SIFT" class="ch.qos.logback.classic.sift.SiftingAppender">
+    <ImmediateFlush>true</ImmediateFlush>
+    <discriminator>
+      <key>group</key>
+      <defaultValue>unspecified</defaultValue>
+    </discriminator>
+    <sift>
+      <appender name="FILE-${group}" class="ch.qos.logback.core.FileAppender">
+        <file>log/group-${group}.log</file>
+        <append>false</append>
+        <encoder>
+          <pattern>%msg%n</pattern>
+        </encoder>
+      </appender>
+    </sift>
+  </appender>
+
   <root level="INFO">
     <appender-ref ref="STDOUT"/>
+    <appender-ref ref="SIFT"/>
     <appender-ref ref="pallet.log" />
   </root>
 
