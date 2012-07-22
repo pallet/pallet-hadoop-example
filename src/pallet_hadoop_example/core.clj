@@ -1,21 +1,20 @@
 (ns pallet-hadoop-example.core
   (:use pallet-hadoop.node
-        [pallet.crate.hadoop :only (hadoop-user)]
+        [pallet.crate.hadoop :only (hadoop-user setup-etc-hosts)]
         [pallet.extensions :only (def-phase-fn)]
         [pallet.phase :only (phase-fn)]
         [pallet.stevedore :only (script)]
-        [pallet.script.lib :only (download-file mkdir)])
+        [pallet.script.lib :only (download-file mkdir)]
+        [pallet.thread-expr :only (if->)])
   (:require [pallet.core :as core]
             [pallet.resource.directory :as d]
             [pallet.resource.remote-file :as rf]))
 
 (defn bootstrap []
-  (use 'pallet.compute)
+  ;; we need to use the right 'compute-service' function
+  (use '[pallet.compute :exclude [compute-service]])
+  (use '[pallet.configure :only [compute-service]])
   (use '[pallet-hadoop.node :only (jobtracker-ip)]))
-
-(def remote-env
-  {:algorithms {:lift-fn pallet.core/parallel-lift
-                :converge-fn pallet.core/parallel-adjust-node-counts}})
 
 (def-phase-fn authorize-mnt
   "Authorizes the `/mnt` volume for use by the default hadoop user;
@@ -49,25 +48,23 @@
                   :literal true))
 
 (defn create-cluster
-  [cluster compute-service]
-  (do (boot-cluster cluster
-                    :compute compute-service
-                    :environment remote-env)
-      (lift-cluster cluster
-                    :phase (phase-fn
-                                     authorize-mnt
-                                     download-data)
-                    :compute compute-service
-                    :environment remote-env)
-      (start-cluster cluster
-                     :compute compute-service
-                     :environment remote-env)))
+  [cluster compute-service & {:keys [etc-hosts] :as options}]
+  (let [groups (keys (:nodedefs cluster))]
+    (do (boot-cluster cluster :compute compute-service)
+        (lift-cluster cluster
+                      :phase (phase-fn
+                              ;; only write /etc/hosts when required
+                              (if-> etc-hosts
+                                    (setup-etc-hosts groups))
+                              authorize-mnt
+                              download-data)
+                      :compute compute-service)
+        (start-cluster cluster :compute compute-service))))
 
 (defn destroy-cluster
   [cluster compute-service]
   (kill-cluster cluster
-                :compute compute-service
-                :environment remote-env))
+                :compute compute-service))
 
 (defn make-example-cluster
   [slave-count ram-size-in-mb]
@@ -88,6 +85,18 @@
                                            :mapred.child.java.opts "-Xms1024m"}}))
 
 (def example-cluster (make-example-cluster 2 (* 4 1024)))
+
+;;; For VMFest/Virtualbox we need to do things a tad differently. The
+;;; image specs are different, bu talso, the type of IP, as nodes
+;;; won't have a private address.
+
+(def vmfest-cluster
+  (assoc example-cluster
+    :base-machine-spec
+    {:os-family :debian
+     :min-ram-size 1024}
+    :ip-type :public))
+
 
 (comment
   (use 'pallet-hadoop-example.core)
