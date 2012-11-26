@@ -94,7 +94,7 @@
   (assoc example-cluster
     :base-machine-spec
     {:os-family :debian
-     :min-ram-size 1024}
+     :min-ram 1024}
     :ip-type :public))
 
 
