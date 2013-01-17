@@ -3,6 +3,7 @@
   :repositories {"sonatype"
                  "http://oss.sonatype.org/content/repositories/releases/"}
   :dependencies [[org.clojure/clojure "1.4.0"]
+	         [org.cloudhoist/pallet "0.7.2"]
                  [org.cloudhoist/pallet-hadoop "0.3.3-beta.4"]
                  [org.jclouds/jclouds-all "1.4.1"]
                  [org.jclouds.driver/jclouds-sshj "1.4.1"]
