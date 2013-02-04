@@ -75,7 +75,7 @@
                 {:jobtracker (node-group [:jobtracker :namenode])
                  :slaves     (slave-group slave-count)}
                 :base-machine-spec {:os-family :ubuntu
-                                    :os-version-matches "10.10"
+                                    :os-version-matches "12.04"
                                     :os-64-bit true
                                     :min-ram ram-size-in-mb}
                 :base-props {:hdfs-site {:dfs.data.dir "/mnt/dfs/data"
