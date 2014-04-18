@@ -1,9 +1,9 @@
-(defproject pallet-hadoop-example "0.0.3-beta.5"
+(defproject pallet-hadoop-example "0.0.3"
   :description "Example project for running Hadoop on Pallet."
   :repositories {"sonatype"
                  "http://oss.sonatype.org/content/repositories/releases/"}
   :dependencies [[org.clojure/clojure "1.4.0"]
-                 [org.cloudhoist/pallet-hadoop "0.3.4-SNAPSHOT"]
+                 [com.palletops/pallet-hadoop "0.3.4"]
                  [org.apache.jclouds/jclouds-all "1.7.1"]
                  [org.apache.jclouds.driver/jclouds-sshj "1.7.1"]
                  [org.apache.jclouds.driver/jclouds-slf4j "1.7.1"]
